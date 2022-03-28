@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MyTestMail;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -97,12 +99,22 @@ class LoginController extends Controller
     {
         $user = User::where('email', $data -> email) -> first();
         if (!$user){
+            // dd($data);
             $user = new User();
             $user -> name = $data -> name;
             $user -> email = $data -> email;
             $user -> provider_id = $data -> id;
             $user -> avatar = $data -> avatar;
             $user -> save();
+
+            $detail = [
+                'title' => 'Welcome ' . $user -> name,
+                'body' => 'Thank you for using our service. Hope you will enjoy using it.'
+            ];
+
+            $mail_object = new MyTestMail($detail);
+
+            Mail::to($data -> email) -> send($mail_object);
         }
 
         Auth::login($user);

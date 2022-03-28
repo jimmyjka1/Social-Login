@@ -66,8 +66,17 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <div class="m-3 d-flex flex-row  align-items-center">
+                                    Or With
+                                    <a href="{{ route('login.facebook') }}" class="d-inline-block m-1 p-1 text-dark"><i style='font-size:30px' class='fa-brands fa-facebook'></i></a>
+                                    <a href="{{ route('login.google') }}" class="d-inline-block m-1 p-1 text-dark"><i style='font-size:30px' class='fa-brands fa-google'></i></a>
+                                    <a href="{{ route('login.github') }}" class="d-inline-block m-1 p-1 text-dark"><i style='font-size:30px' class='fa-brands fa-github'></i></a>
+                                    
+                                </div>
                             </div>
+                            
                         </div>
+                        
                     </form>
                 </div>
             </div>
