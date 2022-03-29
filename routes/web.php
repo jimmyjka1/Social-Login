@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FacebookController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +37,6 @@ Route::get('login/github/callback', [LoginController::class, 'handleGithubCallba
 
 Route::get('login/facebook', [LoginController::class, 'redirectToFacebook']) -> name('login.facebook');
 Route::get('login/facebook/callback', [LoginController::class, 'handleFacebookCallback']);
+
+
+Route::get('send-test-email', [EmailController::class, 'sendEmail']);
