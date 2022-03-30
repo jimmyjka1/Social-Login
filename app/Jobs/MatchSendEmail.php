@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\Mail;
 class MatchSendEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    public $to_mail;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($to)
     {
-        //
+        $this -> to_mail = $to;
     }
 
     /**
@@ -33,6 +33,6 @@ class MatchSendEmail implements ShouldQueue
     public function handle()
     {
         $email = new HelloEmail();
-        Mail::to('jimmyatridhyatech@gmail.com') -> send($email);
+        Mail::to($this -> to_mail) -> send($email);
     }
 }
